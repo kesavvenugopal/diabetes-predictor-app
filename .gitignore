@@ -1,0 +1,33 @@
+# -------------------------------
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*.so
+
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Model files and serialized objects
+*.pkl
+*.h5
+*.joblib
+models/
+artifacts/
+checkpoints/
+
+# Logs and runtime files
+*.log
+*.sqlite3
+*.db
+.cache/
+
+# VS Code settings
+.vscode/
+
+# OS-specific junk
+.DS_Store
+Thumbs.db
+
+# Personal notes 
+notes.md
