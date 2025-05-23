@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diabetes Prediction</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="light-mode">
+
+<!-- Navigation Bar -->
+<nav class="navbar">
+  <div class="navbar-title">Diabetes Prediction</div>
+  <div class="navbar-actions">
+
+    <!-- Theme Toggle -->
+    <button id="themeToggle" title="Toggle Theme">
+      <div class="icon-wrapper">
+        <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="5"/>
+          <g stroke="currentColor" stroke-width="2">
+            <line x1="12" y1="1" x2="12" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/>
+            <line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </g>
+        </svg>
+        <svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" class="icon hidden" viewBox="0 0 24 24">
+          <path d="M21 12.79A9 9 0 0112.21 3 7 7 0 0012 21a9 9 0 009-8.21z"/>
+        </svg>
+      </div>
+    </button>
+
+    <!-- Social Links -->
+    <a href="https://www.linkedin.com/in/kesav-venugopal-360442219/" rel="noopener" class="icon-link" target="_blank" title="LinkedIn">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 24 24">
+        <path d="M4.98 3.5C4.98 4.88 3.9 6 2.5 6S0 4.88 0 3.5 1.08 1 2.5 1 4.98 2.12 4.98 3.5zM.5 24h4V7h-4v17zM8.5 7h3.6v2.3h.05c.5-1 1.7-2 3.5-2 3.7 0 4.4 2.4 4.4 5.5V24h-4v-8c0-1.9 0-4.3-2.6-4.3-2.6 0-3 2-3 4.1V24h-4V7z"/>
+      </svg>
+    </a>
+    <a href="https://github.com/kesavvenugopal" rel="noopener" class="icon-link" target="_blank" title="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 24 24">
+        <path d="M12 .5C5.38.5 0 5.88 0 12.5c0 5.3 3.438 9.8 8.205 11.385.6.11.82-.26.82-.577v-2.02c-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.333-1.753-1.333-1.753-1.09-.745.083-.73.083-.73 1.205.085 1.84 1.24 1.84 1.24 1.07 1.835 2.81 1.305 3.495.997.105-.775.418-1.305.76-1.605-2.665-.305-5.467-1.335-5.467-5.93 0-1.31.47-2.38 1.235-3.22-.125-.305-.535-1.53.115-3.185 0 0 1.005-.32 3.3 1.23a11.5 11.5 0 013.005-.405c1.02.005 2.045.14 3.005.405 2.28-1.55 3.285-1.23 3.285-1.23.655 1.655.245 2.88.12 3.185.77.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.43.37.815 1.11.815 2.24v3.325c0 .32.21.695.825.575C20.565 22.295 24 17.795 24 12.5 24 5.88 18.62.5 12 .5z"/>
+      </svg>
+    </a>
+  </div>
+</nav>
+
+<!-- ℹ️ Info Section outside container -->
+<div class="page-wrapper">
+  <div class="info-section">
+    <button id="info-toggle" class="info-toggle">ℹ️ About this Project</button>
+    <div id="infoContent" class="info-content hidden">
+      <p>
+        This is a machine learning project created solely for educational and demonstration purposes.
+        Please enter your details to see the model's prediction. However, the results are not meant
+        to be used for real-world decision-making or as a substitute for professional medical advice.
+        <strong>This is NOT a medical diagnosis.</strong> Always consult a certified healthcare provider
+        for actual medical concern. Check out my Github Repo for the full project code. Reach out to me
+        via Linkedin.
+      </p>
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <div class="container">
+    <form id="predictionForm">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="gender">Gender</label>
+          <select id="gender" required>
+            <option value="">--Select--</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="age">Age</label>
+          <input type="number" id="age" required min="1" max="80" />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="hypertension">Hypertension</label>
+          <select id="hypertension" required>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="heart_disease">Heart Disease</label>
+          <select id="heart_disease" required>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="smoking_history">Smoking History</label>
+        <select id="smoking_history" required>
+          <option value="">--Select--</option>
+          <option value="never">Never</option>
+          <option value="former">Former</option>
+          <option value="current">Current</option>
+          <option value="not current">Not Current</option>
+          <option value="ever">Ever</option>
+          <option value="No Info">No Info</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="bmi">BMI</label>
+        <input type="number" step="0.1" id="bmi" required min="15" max="38" />
+      </div>
+
+      <div class="form-group">
+        <label for="hba1c">HbA1c Level</label>
+        <input type="number" step="0.1" id="hba1c" required min="3.5" max="8.0" />
+      </div>
+
+      <div class="form-group">
+        <label for="glucose">Blood Glucose Level</label>
+        <input type="number" id="glucose" required min="80" max="240" />
+      </div>
+
+      <div class="button-group">
+        <button id="predict-btn" type="submit">Predict</button>
+        <button type="reset">Reset</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script type="module" src="/static/js/main.js"></script>
+</body>
+</html>
